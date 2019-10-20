@@ -17,7 +17,7 @@ var listItems = exports.listItems = function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return (0, _Items.listItems)();
+            return _Items.itemStatic.listItems();
 
           case 2:
             items = _context.sent;
@@ -45,7 +45,7 @@ var getItem = exports.getItem = function () {
           case 0:
             id = req.params.id;
             _context2.next = 3;
-            return (0, _Items.getItemById)(id);
+            return _Items.itemStatic.getItemById(id);
 
           case 3:
             item = _context2.sent;

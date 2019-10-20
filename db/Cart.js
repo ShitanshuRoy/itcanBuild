@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getCartById = exports.createCart = undefined;
+exports.cartStatic = exports.getCartById = exports.createCart = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -125,6 +125,61 @@ var _Items = require("./Items");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 var Cart = _mongoose2.default.model("carts", _cart2.default);
+
+var cartStatic = exports.cartStatic = {
+  carts: [],
+  setCart: function setCart(items) {
+    var id = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+
+    var filteredCart = this.carts.filter(function (value) {
+      return value._id !== id;
+    });
+    var cart = this.generateCart(items, id);
+    this.carts = [].concat(_toConsumableArray(filteredCart), [cart]);
+    return cart;
+  },
+  generateId: function generateId() {
+    return Math.random().toString(36).substring(7);
+  },
+  generateCart: function generateCart(items, id) {
+    if (items.length === 0) return {
+      _id: id ? id : this.generateId(),
+      items: [],
+      price: 0,
+      discountPrice: 0,
+      savings: 0
+    };
+    var itemDetails = _Items.itemStatic.getItemsById(items);
+    var price = itemDetails.map(function (val) {
+      return val.price;
+    }).reduce(function (a, b) {
+      return a + b;
+    });
+    var discountPrice = itemDetails.map(function (val) {
+      return val.discountPrice;
+    }).reduce(function (a, b) {
+      return a + b;
+    });
+
+    var obj = {
+      _id: id ? id : this.generateId(),
+      items: items,
+      price: price,
+      discountPrice: discountPrice,
+      savings: price - discountPrice
+    };
+    return obj;
+  },
+  getCartById: function getCartById(id) {
+    var cart = this.carts.find(function (val) {
+      return val._id === id;
+    });
+    var itemDetails = _Items.itemStatic.getItemsById(cart.items);
+    return _extends({}, cart, { itemDetails: itemDetails });
+  }
+};

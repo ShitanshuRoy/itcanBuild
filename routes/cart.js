@@ -19,7 +19,7 @@ var createCart = exports.createCart = function () {
             itemIds = req.body.items;
             id = req.body.id;
             _context.next = 4;
-            return (0, _Cart.createCart)(itemIds, id);
+            return _Cart.cartStatic.setCart(itemIds, id);
 
           case 4:
             cart = _context.sent;
@@ -45,16 +45,17 @@ var getCart = exports.getCart = function () {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
+            console.log("router", req.body);
             id = req.params.id;
-            _context2.next = 3;
-            return (0, _Cart.getCartById)(id);
+            _context2.next = 4;
+            return _Cart.cartStatic.getCartById(id);
 
-          case 3:
+          case 4:
             cart = _context2.sent;
 
             res.send(cart);
 
-          case 5:
+          case 6:
           case "end":
             return _context2.stop();
         }
