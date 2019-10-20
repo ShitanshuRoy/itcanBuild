@@ -3,9 +3,7 @@
   "version": "0.0.0",
   "description": "Boilerplate for writing pretty Express-based APIs",
   "scripts": {
-    "dev-server": "nodemon --exec \"babel-node --inspect src\"",
-    "build": "babel -d ./build src",
-    "start": "nodemon --exec \"NODE_ENV=production babel-node build/index.js\"",
+    "start": "node index.js",
     "test": "jest",
     "lint": "eslint 'src/**/*.js'",
     "fix-lint": "prettier --write './src/**/*.js' && npm run-script lint"
