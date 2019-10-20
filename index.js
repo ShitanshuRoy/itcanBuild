@@ -61,6 +61,6 @@ var options = {
 // });
 
 app.use((0, _router2.default)());
-app.listen(8080, function(err) {
+app.listen(process.env.PORT || 8080, function(err) {
   console.log("listning");
 });
