@@ -25,7 +25,9 @@ var _items = require("./items");
 
 var _cart = require("./cart");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
 // Defines an express app that runs the boilerplate codebase.
 
@@ -37,7 +39,10 @@ function createRouter() {
   var router = _express2.default.Router();
 
   // static assets, served from "/public" on the web
-  router.use("/public", _express2.default.static(_path2.default.join(__dirname, "..", "public")));
+  router.use(
+    "/public",
+    _express2.default.static(_path2.default.join(__dirname, "..", "public"))
+  );
 
   router.use((0, _cookieParser2.default)()); // parse cookies automatically
   router.use(_bodyParser2.default.json()); // parse json bodies automatically
@@ -49,7 +54,7 @@ function createRouter() {
    * returns. This middleware applies it to all subsequently
    * defined routes.
    */
-  router.get("/*", function (req, res, next) {
+  router.get("/*", function(req, res, next) {
     res.set({
       "Last-Modified": new Date().toUTCString(),
       Expires: -1,
@@ -57,7 +62,9 @@ function createRouter() {
     });
     next();
   });
-
+  router.get("/", function(req, res) {
+    res.send(JSON.stringify("Hello World"));
+  });
   // *****************
   // * API ENDPOINTS *
   // *****************
