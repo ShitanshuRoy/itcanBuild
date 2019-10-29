@@ -1,5 +1,6 @@
 "use strict";
 const regeneratorRuntime = require("regenerator-runtime");
+var mediaUrl = "https://itcanmedia.s3.eu-central-1.amazonaws.com/";
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -383,6 +384,56 @@ var itemStatic = (exports.itemStatic = {
       discountPrice: 325,
       price: 349,
       rating: 4.3
+    },
+    {
+      _id: "8uxtcu1",
+      image: `${mediaUrl}download.png`,
+      name: "Paradiso Eau De Parfum - 50ml",
+      brand: "Roberto Cavalli",
+      discount: 25,
+      discountPrice: 412,
+      price: 549,
+      rating: 4.5
+    },
+    {
+      _id: "8uxtcu2",
+      image: `${mediaUrl}409.png`,
+      name: "Eau De Parfum Spray for her - 50 ml",
+      brand: "Roberto Cavalli",
+      discount: 30,
+      discountPrice: 399,
+      price: 570,
+      rating: 4.1
+    },
+    {
+      _id: "8uxtcu3",
+      image: `${mediaUrl}404.png`,
+      name: "Aqua EDT 50ml for her",
+      brand: "Roberto Cavalli",
+      discount: 15,
+      discountPrice: 298,
+      price: 350,
+      rating: 4.3
+    },
+    {
+      _id: "8uxtcu4",
+      image: `${mediaUrl}463.png`,
+      name: "Nero - Perfume for Women - EDP 50 ml",
+      brand: "Roberto Cavalli",
+      discount: 25,
+      discountPrice: 431,
+      price: 575,
+      rating: 4.3
+    },
+    {
+      _id: "8uxtcu5",
+      image: `${mediaUrl}500.png`,
+      name: "Nero - Perfume for Women - EDP 50 ml",
+      brand: "Roberto Cavalli",
+      discount: 0,
+      discountPrice: 700,
+      price: 700,
+      rating: 4.1
     }
   ],
   listItems: function listItems() {
